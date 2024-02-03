@@ -1,0 +1,177 @@
+body {
+    background-color: #fff; /* NEED TO USE IMPORTANT TO OVERRIDE */
+    font-family: 'Source Sans Pro', sans-serif !important;
+}
+
+.container { /* default container */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.loginContainer{
+    max-width: 500px !important;
+    height: 350px !important;
+    margin: 0 auto;
+    padding: 20px 20px 20px 20px; /* Padding for all sides: top, right, bottom, left */
+    padding-top: 0px;
+    border: 2px solid #000; /* Width, Style (solid, dashed, etc.), and Color */
+    border-radius: 10px; /* this rounds the edges */
+    /* CSS */
+}
+
+.registerContainer{
+    max-width: 500px;
+    height: 440px;
+    margin: 0 auto;
+    padding: 20px 20px 20px 20px; /* Padding for all sides: top, right, bottom, left */
+    padding-top: 0px;
+    border: 2px solid #000; /* Width, Style (solid, dashed, etc.), and Color */
+    border-radius: 10px; /* this rounds the edges */
+    /* CSS */
+}
+
+#loginHeader {
+    margin-top: 0; /* Remove the top margin */
+    padding-top: 20px; /* Remove the top padding */
+}
+
+.loginPageTop {
+    display: flex;
+    align-items: center; /* Vertically center the content */
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.imageCenter {
+    mix-blend-mode: multiply;
+}
+
+.topLogo {
+    width: 75px; /* Set the desired width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+}
+
+label {
+    text-align: left;
+    display: block; /* This makes the label take the full width of its container, allowing the text-align to work */
+}
+
+.textCenter {
+    display: block;
+    text-align: center;
+}
+
+h3 {
+    color: #282929;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+}
+
+/* currently textareas are not used, but may change later */
+form textarea {
+    min-height: 15px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1 px solid #282929;
+    background-color: #ffff;
+    color: #282929;
+    /* font-family: monospace, sans-serif;*/
+    font-size: 15px;
+    border-radius: 10px;
+}
+
+/** submit button */
+form input[type="submit"] {
+    padding: 15px;
+    border: none;
+    background-color: #96a8d9;
+    color: #ffff;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 10px;
+    width: 500px;
+    text-align: center;
+}
+
+#submitButton {
+    padding: 15px;
+    border: none;
+    background-color: #96a8d9;
+    color: #ffff;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 10px;
+    width: 450px !important;
+    text-align: center;
+}
+
+#submitButton:hover { /* darkens the background color when you hover over */
+    background-color: #8399d4;
+}
+
+form input[type="submit"]:hover { /* darkens the background color when you hover over */
+    background-color: #8399d4;
+}
+
+/* for form fields besides passwords (username) */
+form input[type="text"], [type="text"].box {
+    /* font-family: monospace, sans-serif; */
+    width: 450px !important;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 10px; /* this rounds the edges */
+    background-color: #ffff;
+    color: #282929; /* color of text in the form */
+    text-align: left;
+    border: 1px solid black;
+}
+
+/* for password form field */
+form input[type="password"], [type="password"].box {
+    /* font-family: monospace, sans-serif; */
+    width: 450px !important;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 10px !important;
+    background-color: #ffff;
+    color: #282929;
+    border: 1px solid black;
+}
+
+.textCenterBtn{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto;
+}
+
+/* Define a CSS class with a specific text color */
+.homeDarkBlueText {
+    color: #001D85;
+}
+
+.homeLightBlueText {
+    color: #0078B6;
+}
+
+/* Remove bullet points from the list */
+.noBullets {
+    display: flex;
+    flex-direction: column; /* This will stack items vertically */
+}

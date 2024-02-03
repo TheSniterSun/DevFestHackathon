@@ -1,0 +1,124 @@
+body {
+    font-family: monospace, sans-serif;
+
+}
+
+.container { /* default container */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h3 {
+    color: #282929;
+    text-align: center; 
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+}
+
+form textarea {
+    min-height: 15px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1 px solid #282929;
+    background-color: white;
+    color: #282929;
+    font-size: 15px;
+    border-radius: 10px;
+    resize: vertical;
+}
+
+form input[type="submit"] {
+    padding: 15px;
+    border: none;
+    background-color: hsl(224, 47%, 72%);
+    color: #ffff;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+form input[type="text"].box {
+    width: 800px !important;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+}
+
+form input[type="submit"]:hover { /* darkens the background color when you hover over */
+    background-color: #8399d4;
+}
+
+#response { /* for gpt response */
+    width: 780px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1 px solid #282929;
+    background-color: #f1ffe7;
+    color: #282929; 
+    white-space: pre-wrap;
+    height: 200px;
+    font-size: 15px;
+    border-radius: 10px;
+}
+
+/* for making an event card */
+.eventCard {
+  width: 300px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.eventTime, .eventDate {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.icon {
+  font-size: 24px;
+  margin-right: 8px;
+}
+
+.addToCalendar {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.addToCalendar:hover {
+  background-color: #0056b3;
+}
+
+.eventsContainer {
+    display: flex;
+    flex-wrap: nowrap; /* Use 'wrap' if you want the items to wrap when the container width is reached */
+    gap: 10px; /* This creates space between your items */
+    /* Add other styling as needed */
+}
+
+.blueText {
+    color: #0056b3;
+}

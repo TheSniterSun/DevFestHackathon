@@ -1,0 +1,42 @@
+/* src/components/Navbar.css */
+
+/* Navbar styles */
+.navbar {
+    background-color: #003B59 !important;
+    color: white !important;
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    padding: 10px 20px;
+    min-height: 75px;
+}
+
+/* Nav bar links */
+.nav li {
+    text-decoration: none;
+    color: white;
+}
+
+/* Hover effect for links */
+.nav li:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+/* Media query for responsive design */
+/* when the screen width is less than or equal to 768 pixels, the styles within this media query will take effect */
+/* @media (max-width: 768px) { } */
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+}
+
+li {
+    margin-right: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
