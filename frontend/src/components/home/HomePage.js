@@ -31,15 +31,15 @@ function HomePage(props) {
         </div>
 
         <div className={styles.textCenter}>
-            <h2>WeWater is a place to report water quality concerns (bacteria like e.coli or reduced quality) so other people can see if it's just the neighborhood or if it's a city/community wide event </h2>
+            <h2>WeWater is a water quality monitoring system with 3 features:</h2>
 
             <br />
 
             <h2 className={styles.centerContainer}>
                 <ul className={styles.noBullets}>
-                    <li> <span className={`${styles.homeDarkBlueText} ${styles.boldText}`}>Step 1:</span> Report water concerns </li>
-                    <li> <span className={`${styles.homeDarkBlueText} ${styles.boldText}`}>Step 2:</span> Recieve warnings </li>
-                    <li> <span className={`${styles.homeDarkBlueText} ${styles.boldText}`}>Step 3:</span> Contact officials </li>
+                    <li> <span className={`${styles.homeDarkBlueText} ${styles.boldText}`}>- </span> Self-report water quality concerns </li>
+                    <li> <span className={`${styles.homeDarkBlueText} ${styles.boldText}`}>- </span> Show high-risk areas with an interactive map </li>
+                    <li> <span className={`${styles.homeDarkBlueText} ${styles.boldText}`}>- </span> Contact relevant policy officials </li>
                 </ul>
             </h2>
 
