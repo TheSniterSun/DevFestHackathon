@@ -24,14 +24,12 @@ function HomePage(props) {
         <br />
         <br />
 
-        <h1 className={styles.textCenter}>Welcome to WeWater!</h1>
-
         <div className={styles.imageCenter}>
             <img src={process.env.PUBLIC_URL + logoPath} className={styles.center} alt="logo" />
         </div>
 
         <div className={styles.textCenter}>
-            <h2>WeWater is a water quality monitoring system with 3 features:</h2>
+            <h2><span className={`${styles.homeDarkBlueText} ${styles.boldText}`}>WeWater</span> is a water quality monitoring system with 3 features:</h2>
 
             <br />
 

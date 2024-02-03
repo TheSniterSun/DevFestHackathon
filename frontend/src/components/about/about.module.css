@@ -1,0 +1,50 @@
+/* AboutPage.module.css */
+.blue-background {
+    background-color: lightblue;
+    padding: 15px;
+}
+
+.grey-background {
+    background-color: #D9D9D9; /* The light gray background */   
+    padding: 15px; /* padding must match */
+}
+
+.text-row {
+    display: flex; /* align in a row */
+    flex-wrap: wrap;
+}
+
+.text-element {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    padding-right: 25px; /* padding to each element */
+}
+
+.section-header {
+    padding: 10px;
+    font-size: 20px;
+}
+
+.featured-header {
+    padding: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.titleText {
+    font-size: 15px;
+}
+
+.image-container {
+    font-size: 15px;
+}
+
+.image {
+    margin-left: auto;
+    margin-right: auto;
+
+    max-width: 100%; /* responsive */
+    height: auto; /* keep aspect ratio */
+    display: block; /* align image to the center (of container) */
+}
