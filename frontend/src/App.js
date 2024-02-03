@@ -11,6 +11,7 @@ import LoginPage from './components/home/LoginPage';
 import RegisterPage from './components/home/RegisterPage';
 
 import ChatPage from './components/chat/ChatPage';
+import AboutPage from './components/about/AboutPage';
 import NavBar from './components/NavBar';
 
 // Rendered when user goes to base path (localhost:3000/)
@@ -42,6 +43,7 @@ function App() {
             <Route path="/login" element={<LoginPage token={token} setToken={setToken} setUsername={setUsername} />} />
             <Route path="/register" element={<RegisterPage token={token} setToken={setToken} setUsername={setUsername} />} />
 
+            <Route path="/about" element={<AboutPage token={token} setToken={setToken} username={username} />} />
             <Route path="/chat" element={<ChatPage token={token} setToken={setToken} username={username} />} />
         </Routes>
 

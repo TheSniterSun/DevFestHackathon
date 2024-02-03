@@ -51,6 +51,16 @@ function NavBar(props) {
         }
     }
 
+    // check if the user has a token
+    function handleAbout() {
+      if (isLoggedIn) {
+          navigate('/about')
+      }
+      else {
+          navigate('/login')
+      }
+    }
+
     return (
         <>
         {/* Expands on larger screen sizes; Note: bg-body-tertiary is just a type of background color */}
@@ -61,6 +71,11 @@ function NavBar(props) {
             <Navbar.Collapse id="basic-navbar-nav">
 
             {/* Change this so it's NOT a dropdown later */}
+              <Nav className="ml-auto">
+                {/* First need to check that the user is logged in*/}
+                <Nav.Link onClick={handleAbout}>About</Nav.Link>
+              </Nav>
+
               <Nav className="ml-auto">
                 {/* First need to check that the user is logged in*/}
                 <Nav.Link onClick={handleChat}>Chat</Nav.Link>
