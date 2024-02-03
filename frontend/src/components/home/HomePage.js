@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 const baseURL = "http://localhost:8000"; // for local dev this is the backend server
 
 function HomePage(props) {
-    const logoPath = '/images/secra_logo.png'; // in public folder
+    const logoPath = '/images/wewater.png'; // in public folder
     const token = props.token;
     const isLoggedIn = user_authorized(token);
 
@@ -24,23 +24,22 @@ function HomePage(props) {
         <br />
         <br />
 
-        <h1 className={styles.textCenter}>Welcome to Secra!</h1>
+        <h1 className={styles.textCenter}>Welcome to WeWater!</h1>
 
         <div className={styles.imageCenter}>
             <img src={process.env.PUBLIC_URL + logoPath} className={styles.center} alt="logo" />
         </div>
 
         <div className={styles.textCenter}>
-            <h2>Secra is an AI scheduling assistant <span className={styles.homeLightBlueText}>for students</span>. 
-            It has 3 main features: </h2>
+            <h2>WeWater is a water quality monitoring system with 3 features:</h2>
 
             <br />
 
             <h2 className={styles.centerContainer}>
                 <ul className={styles.noBullets}>
-                    <li> <span className={`${styles.homeDarkBlueText} ${styles.boldText}`}>Chat:</span> Schedule events and meetings</li>
-                    <li> <span className={`${styles.homeDarkBlueText} ${styles.boldText}`}>Canvas:</span> Plan times to work on assignments</li>
-                    <li> <span className={`${styles.homeDarkBlueText} ${styles.boldText}`}>Connect:</span> Talk with other student assistants</li>
+                    <li> <span className={`${styles.homeDarkBlueText} ${styles.boldText}`}>- </span> Self-report water quality concerns </li>
+                    <li> <span className={`${styles.homeDarkBlueText} ${styles.boldText}`}>- </span> Show high-risk areas with an interactive map </li>
+                    <li> <span className={`${styles.homeDarkBlueText} ${styles.boldText}`}>- </span> Contact relevant policy officials </li>
                 </ul>
             </h2>
 

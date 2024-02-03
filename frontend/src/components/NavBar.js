@@ -56,7 +56,7 @@ function NavBar(props) {
         {/* Expands on larger screen sizes; Note: bg-body-tertiary is just a type of background color */}
         <Navbar expand="lg" className={styles.navbar} data-bs-theme="dark">
           <Container>
-            <Navbar.Brand href="/">Secra</Navbar.Brand>
+            <Navbar.Brand href="/">WeWater</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
 
