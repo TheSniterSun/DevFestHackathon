@@ -32,18 +32,6 @@ form textarea {
     resize: vertical;
 }
 
-form input[type="submit"] {
-    padding: 15px;
-    border: none;
-    background-color: hsl(224, 47%, 72%);
-    color: #ffff;
-    cursor: pointer;
-    font-size: 15px;
-    border-radius: 10px;
-    width: 300px;
-    text-align: center;
-}
-
 form input[type="text"].box {
     width: 800px !important;
     margin: 0 auto;
@@ -72,53 +60,91 @@ form input[type="submit"]:hover { /* darkens the background color when you hover
 }
 
 /* for making an event card */
+.eventsContainer {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap onto the next line if there's no space */
+    gap: 20px; /* This creates space between your items */
+    justify-content: center; /* Centers items in the container when they don't fill the entire line */
+    align-items: flex-start; /* Aligns items to the start of the cross axis */
+    margin: 0 auto; /* Centers the container if it's smaller than the full page width */
+    padding: 20px; /* Adds some padding around the whole container */
+}
+
 .eventCard {
-  width: 300px;
+  width: calc(50% - 10px); /* Adjust width, subtract the gap to maintain spacing */
   border: 2px solid #000;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-start; /* Aligns content to the start of the card */
+  background-color: #FFFFFF; /* Background color of the card */
 }
 
-.eventTime, .eventDate {
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  margin-bottom: 10px;
+/* Add responsive behavior */
+@media (max-width: 768px) {
+  .eventCard {
+    width: 100%; /* On smaller screens, each card takes full width */
+  }
 }
 
-.icon {
-  font-size: 24px;
-  margin-right: 8px;
+/* If you have specific styles for the title and the content, add them here */
+.eventTitle {
+  font-size: 18px; /* Adjust as needed */
+  font-weight: bold;
+  margin-bottom: 10px; /* Space between title and content */
 }
 
-.addToCalendar {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 10px;
-  width: 100%;
-}
-
-.addToCalendar:hover {
-  background-color: #0056b3;
-}
-
-.eventsContainer {
-    display: flex;
-    flex-wrap: nowrap; /* Use 'wrap' if you want the items to wrap when the container width is reached */
-    gap: 10px; /* This creates space between your items */
-    /* Add other styling as needed */
+.eventContent {
+  font-size: 16px; /* Adjust as needed */
 }
 
 .blueText {
     color: #0056b3;
+}
+
+.bubble {
+    max-width: 800px;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    clear: both;
+    word-wrap: break-word;
+}
+
+.assistant {
+    background-color: #CCE3FF; 
+    float: left;
+}
+
+.user {
+    background-color: #8AC0FF;
+    float: right;
+}
+
+.queryForm {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1); /* Optional: adds a shadow for better separation */
+    display: inline;
+}
+  
+form input[type="submit"] {
+    margin-left: 20px;
+    padding: 15px;
+    border: none;
+    background-color: hsl(224, 47%, 72%);
+    color: #ffff;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 10px;
+    width: 100px;
+    text-align: center;
+    display: inline;
 }

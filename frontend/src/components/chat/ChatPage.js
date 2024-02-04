@@ -12,12 +12,16 @@ import axios from 'axios'; // Import Axios
 import LoadingText from './AssistantResponse';
 import AssistantResponse from './AssistantResponse';
 
+import TextBubble from './TextBubble';
+
 const URL = 'auth'; // change as needed
 
 function ChatPage(props) {
 
     const logoPath = '/images/secra_logo.png';
-    const [messages, setMessages] = useState(Array(0)); // empty array to start
+
+    const text = "Hello, please share any water quality concerns. I will do my best to assist you."
+    const [messages, setMessages] = useState([{text: text, sender: "gpt"}]); // empty array to start
     const navigate = useNavigate();
     const username = props.username;
     
@@ -28,24 +32,24 @@ function ChatPage(props) {
     const submittedQuery = false;
     let gpt_response = "";
 
+    let ex_string = "There's water pollution in our neighborhood, what should I do...";
+
     // use an array of dictionaries
     // for each dict:
     // prop 1: message itself
     // prop 2: loc (left vs. right for assistant vs. user)
 
-    function onTextSubmit(new_message) {
-        setMessages(messages => (
-            [...messages, new_message] // this message is a dict (has text, sender as 2 fields)
-        ));
-    };
-
     function submitQuery(event) {
-
         console.log("Hello testing how many times this is called")
 
         event.preventDefault() // prevent default form submission behavior (because we want to connect to BE endpoint)
         
-        setResponse("generating"); // "Generating response ... "
+        // setResponse("generating"); // "Generating response ... "
+
+        onUserTextSubmit(query) // add to the messages array
+
+        // add text for the message, and indication of the sender
+        onGptTextSubmit("generating")
 
         axios({
           method: "POST",
@@ -77,65 +81,20 @@ function ChatPage(props) {
 
             console.log(gpt_response)
 
-            // setResponse(gpt_response);
-            // NOW PARSE THE JSON TO OBTAIN THE RELEVANT EVENT INFORMATION:
-            
-            /* 
-            let times = gpt_response['times']; // array of JSON objects
-            let num_times = times.length;
+            gpt_response = data.response;
 
-            if (num_times === 0) {
-                throw new Error("No suggested times found");
-            }
-
-            // OTHER EVENT PARAMS 
-            let timezone = gpt_response['timezone']
-            let summary = gpt_response['summary'];
-            let loc = gpt_response['location']; // location is a keyword in JS
-            let recurrence = gpt_response['recurrence'];
-
-            // iterate over the times and pass them into components to display
-            
-            let start = "";
-            let end = "";
-            let date = "";
-
-            let time = "";
-
-            // edit this with React later
-            for (let i = 0; i < num_times; i++) {
-                time = times[i]
-
-                start = time['start'];
-                end = time['end'];
-                date = time['date'];
-
-                let display_tz = "";
-                
-                if (timezone == "US/Eastern" || timezone == "America/New_York" || timezone == "ET") { // handle only ET for now
-                    display_tz = "ET";
-                }
-
-                let formatted_time = start + " to " + end + " " + display_tz;
-
-                console.log("Option " + (i + 1) + ":\nTime: " + formatted_time + "\nDate: " + date);
-            }
-            */
+            onGptTextSubmit(gpt_response); // Add the GPT response to the messages
 
             // pass the JSON info to the Assistant response
-
             setResponse(gpt_response); // should be a JSON
-
+            
             /*
-
             Once GPT returns the list of times, we want to render them as separate options / components
             All events should be similar/the same, except start, end, date
             Create a new component with these fields, then just show them side by side
             We need a way to figure out how to respond back with which option was clicked
             Specifically, 
-
             */
-
 
             // response is a JSON string, convert to JSON object
             // gpt_response = JSON.parse(gpt_response)
@@ -163,57 +122,71 @@ function ChatPage(props) {
         setQuery(event.target.value);
     }
 
+    function onUserTextSubmit(new_message) { // add text for the message, and indication of the sender
+        setMessages(messages => [
+            ...messages,
+            { text: new_message, sender: 'user' } // Assuming 'user' as the sender
+        ]);
+    }
+
+    function onGptTextSubmit(new_message) { // add text for the message, and indication of the sender
+        setMessages(messages => [
+            ...messages,
+            { text: new_message, sender: 'gpt' } // Assuming 'user' as the sender
+        ]);
+    }
+
+    // Generate JSX code for Display each item, Add array index as the key
+    // for pos, it should be "left" for assistant and "right" for user
+    const renderMessages = messages.map((item, index) => 
+        <div key={index}>
+            <TextBubble text={item['text']} sender={item['sender']}/>
+        </div>
+    );
+
     return (
         <>  
+            <div className={styles.messageContainer}>
+                {renderMessages}
 
-        <div className={styles.container}>
-            <h1 id={styles.header}><span style={{color: 'blue'}} id="username">{username}</span>'s Assistant</h1>
-            
-            <br />
-            
-            <h3>Your Message</h3>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
 
-            <br />
-
-            <form id="queryForm" onSubmit={submitQuery}>
-                <input type="text" value={query} onChange={handleQueryChange} name="query" id="query" placeholder="Schedule a meeting..." className={styles.box} required></input>
-                <input id="submitButton" type="submit" value="Submit" />
-            </form>
-        
-            {/* GPT RESPONSE HERE */}
-
-            {/* Once GPT returns a response, we use components (for Event) to represent the times */}
-            <br />
-            <br />
-            <AssistantResponse response={response} username={username} />
-
-        </div>
-        
-        {/*-- From tester1.secra calendar 
-        <div align="center">
-
-        <div style={{ position: 'relative', width: '800px', height: '600px' }}>
-
-        <iframe 
-            src="https://calendar.google.com/calendar/embed?src=tester1.secra%40gmail.com&ctz=America%2FNew_York" 
-            title="User's Google Calendar" 
-            style={{ border: 0, width: '100%', height: '100%' }} >
-        </iframe>
-
-        <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            // backgroundColor: 'rgba(173, 216, 230, 0.5)', // Light blue color with opacity
-            pointerEvents: 'none' // To allow interaction with the iframe
-        }}></div>
-
-        </div>
-
-
-        </div> */}
+                <form id="queryForm" className={styles.queryForm} onSubmit={submitQuery}>
+                    <input type="text" value={query} onChange={handleQueryChange} name="query" id="query" placeholder="There's water pollution in our neighborhood, what should I do..." className={styles.box} required></input>
+                    <input id="submitButton" type="submit" value="Submit" />
+                </form>
+            </div>
         </>
     );
 }
