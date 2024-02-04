@@ -95,9 +95,9 @@
     mapboxgl.accessToken = 'pk.eyJ1IjoibmRqZWRqb3MiLCJhIjoiY2xzNm45MDY4MHNzNDJrbzdhaW0zdTdnNCJ9.79Qc35RY0WIQOuI40PhhRQ'; //Mapbox token 
     var map = new mapboxgl.Map({
       container: 'map', // container id
-      style: 'mapbox://styles/mapbox/streets-v11', // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
+      style: 'mapbox://styles/mapbox/light-v10', // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
       center: [-73.935, 40.730], // starting position [lng, lat]
-      zoom: 9,// starting zoom
+      zoom: 10,// starting zoom
       transformRequest: transformRequest
     });
 
@@ -127,15 +127,52 @@
             //Add the the layer to the map
             map.addLayer({
               'id': 'csvData',
-              'type': 'circle',
+              'type': 'symbol',
               'source': {
                 'type': 'geojson',
                 'data': data
               },
-              'paint': {
-                'circle-radius': 5,
-                'circle-color': "purple"
-              }
+
+            'layout': {
+                'visibility' : 'visible',
+                'icon-image': 'drinking-water-15'
+
+            },
+
+            "fog": {
+                    "range": [0.8, 8],
+                    "color": "#dc9f9f",
+                    "horizon-blend": 0.5,
+                    "high-color": "#245bde",
+                    "space-color": "#000000",
+                    "star-intensity": 0.15
+                },
+
+            // 'paint': {
+            //         'icon-color': [
+            //         'match', // Use the 'match' expression: https://docs.mapbox.com/style-spec/reference/expressions/#match
+            //         ['get', 'Residual_Free_Chlorine'], // Use the result 'STORE_TYPE' property
+            //         // 'Convenience Store',
+            //         // '#FF8C00',
+            //         // 'Convenience Store With Gas',
+            //         // '#FF8C00',
+            //         // 'Pharmacy',
+            //         // '#FF8C00',
+            //         // 'Specialty Food Store',
+            //         // '#9ACD32',
+            //         // 'Small Grocery Store',
+            //         // '#008000',
+            //         // 'Supercenter',
+            //         // '#008000',
+            //         // 'Superette',
+            //         // '#008000',
+            //         // 'Supermarket',
+            //         // '#008000',
+            //         // 'Warehouse Club Store',
+            //         // '#008000',
+            //         '#FF0000' // any other store type
+            //         ]
+            //     },
             });
 
 
@@ -147,11 +184,14 @@
               //set popup text
               //You can adjust the values of the popup to match the headers of your CSV.
               // For example: e.features[0].properties.Name is retrieving information from the field Name in the original CSV.
-              var description = `<h3>` + e.features[0].properties.Name + `</h3>` + `<h4>` + `<b>` + `Address: ` + `</b>` + e.features[0].properties.Address + `</h4>` + `<h4>` + `<b>` + `Phone: ` + `</b>` + e.features[0].properties.Phone + `</h4>`;
+              var description = `<h3>` + e.features[0].properties.Address + `</h3>` + `<h4>` + `<b>` + `Date: ` + `</b>` + e.features[0].properties.Date + `</h4>` + `<h4>` + `<b>` + `Chlorine (mg/L): ` + `</b>` + e.features[0].properties.Residual_Free_Chlorine + 
+                `</h4>` + `<h4>` + `<b>` + `Turbidity (NTU): ` + `</b>` + e.features[0].properties.Turbidity_NTU + `</h4>` + `<h4>` + `<b>` + `E. Coli (MPN/100mL): ` + `</b>` + e.features[0].properties.E_coli_Quanti_Tray + `</h4>` + `<h4>` + `<b>` + `Coliform (MPN/100mL): ` + `</b>` + 
+                    e.features[0].properties.Coliform_Quanti_Tray + `</h4>` + `<h4>` + `<b>` + `Fluoride (mg/L): ` + `</b>`  + e.features[0].properties.Fluoride;
 
               // Ensure that if the map is zoomed out such that multiple
               // copies of the feature are visible, the popup appears
               // over the copy being pointed to.
+              // continental
               while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
                 coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
               }
