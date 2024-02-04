@@ -80,30 +80,16 @@ function HomePage(props) {
             </div>
 
             <div className="col-md-4 textContainer">
-                <h5>Contact officials (requires login)</h5>
+                <h5>General water advice (requires login)</h5>
 
                 <br />
 
-                <button className={styles.reportButton} onClick={handleChatClick}>Contact</button>
+                <button className={styles.reportButton} onClick={handleChatClick}>Chat</button>
             </div>
         </div>
             
         <br />
         <br />
-
-        <div className={styles.textCenter}>
-            { isLoggedIn ? (
-
-            <h2>
-                Thanks for signing in! Get started with <Link className={styles.homeLightBlueText} to="/chat">Chat</Link>.
-            </h2> ):
-
-            (<h2>
-                To get started, please <Link className={styles.homeLightBlueText} to="/login">login</Link> or <Link className={styles.homeLightBlueText} to="/register">register</Link>.
-            </h2>)
-
-            }
-        </div>
 
         </div>
     </>
