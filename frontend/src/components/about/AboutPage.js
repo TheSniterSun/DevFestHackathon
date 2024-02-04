@@ -52,13 +52,13 @@ return (
                     <div className="col-md-6">
                         <h3>Brandon Pae</h3>
                         <img src={process.env.PUBLIC_URL + '/images/brandon.jpeg'} className="img-fluid" alt="title2" style={{ width: '150px', height: '200px', objectFit: 'cover'}}/>
-                        <p>I am Brandon.</p>
+                        <p>Sophomore in SEAS studying CS and entrepreneurship.</p>
                     </div>
 
                     <div className="col-md-6">
                         <h3>Daniel Manjarrez</h3>
                         <img src={process.env.PUBLIC_URL + '/images/daniel.png'} className="img-fluid" alt="title2" style={{ width: '150px', height: '200px', objectFit: 'cover'}}/>
-                        <p>I am Daniel.</p>
+                        <p>Sophomore in SEAS studying CS.</p>
                     </div>
                 </div>
 
@@ -66,13 +66,13 @@ return (
                     <div className="col-md-6">
                         <h3>Nicholas Djedjos</h3>
                         <img src={process.env.PUBLIC_URL + '/images/nicholas.png'} className="img-fluid" alt="title2" style={{ width: '150px', height: '200px', objectFit: 'cover'}}/>
-                        <p>I am Nicholas.</p>
+                        <p>Sophomore in SEAS studying CS and BME.</p>
                     </div>
 
                     <div className="col-md-6">
                         <h3>Trinity Suma</h3>
                         <img src={process.env.PUBLIC_URL + '/images/trinity.png'} className="img-fluid" alt="title2" style={{ width: '150px', height: '200px', objectFit: 'cover'}}/>
-                        <p>I am Trinity.</p>
+                        <p>Sophomore in SEAS studying CS.</p>
                         </div>
                     </div>
                 </div>

@@ -57,7 +57,7 @@ function NavBar(props) {
 
     // check if the user has a token
     function handleAbout() {
-      navigate('/login')
+      navigate('/about')
     }
 
     return (
