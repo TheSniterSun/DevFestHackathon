@@ -414,3 +414,45 @@ def insert_gcal_token(user_id, token):
 
         except Exception as e:
             print("ERROR: " + str(e))
+
+def insert_water_data(DATE, CHLORINE, TURBIDITY, FLUORIDE, COLIFORM, ECOLI, LAT, LONG, LOC):
+    with SSHTunnelForwarder( 
+        (AWS_IP, 22), # 22 by default
+        ssh_username='ec2-user', 
+        remote_bind_address=('127.0.0.1', 3306) # port 3306 is default for mySQL
+
+    ) as server: 
+        try: 
+            print("****SSH Tunnel Established****")   
+
+            conf ={
+                'host': '127.0.0.1', # local because 
+                'port': str(server.local_bind_port), # '3306',
+                'database': "SECRA", # might need to change this
+                'user': "root",
+                'password': DATABASE_PASSWORD
+            }
+
+            engine = create_engine("mysql+pymysql://{user}:{password}@{host}:{port}/{database}".format(**conf))
+
+            with engine.connect() as connection:
+                query = """
+                INSERT INTO WATER_DATA (DATE, CHLORINE, TURBIDITY, FLUORIDE, COLIFORM, ECOLI, LAT, LONG, LOC)
+                VALUES (:DATE,:CHLORINE,:TURBIDITY,:FLUORIDE,:COLIFORM,:ECOLI,:LAT,:LONG,:LOC)
+                """
+
+                params = {'DATE': DATE,
+                          'CHLORINE': CHLORINE,
+                          'TURBIDITY': TURBIDITY,
+                          'FLUORIDE': FLUORIDE,
+                          'COLIFORM': COLIFORM,
+                          'ECOLI': ECOLI,
+                          'LAT': LAT,
+                          'LONG': LONG,
+                          'LOC': LOC}
+
+                connection.execute(text(query), params)
+                connection.commit()
+
+        except Exception as e:
+            print("ERROR: " + str(e))

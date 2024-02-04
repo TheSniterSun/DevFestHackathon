@@ -169,9 +169,18 @@ form input[type="password"], [type="password"].box {
 .homeLightBlueText {
     color: #0078B6;
 }
+  
+.textContainer {
+    text-align: center;
+  }
+  
+.reportButton {
+    display: inline-block; /* This makes sure that text-align center affects the button */
+    padding: 15px;
+    cursor: pointer;
+    border: 1px solid #ccc;
 
-/* Remove bullet points from the list */
-.noBullets {
-    display: flex;
-    flex-direction: column; /* This will stack items vertically */
+    border-radius: 5px;
+    background: #81CAFF;
+    color: black;
 }

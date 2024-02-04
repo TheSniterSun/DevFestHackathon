@@ -16,137 +16,107 @@ import styles from './about.module.css';
 
 const baseURL = "http://localhost:8000"; // for local dev this is the backend server
 
+function AboutPage(props) {
 
+const logoPath = '/images/wewater.png'; // in public folder
+const token = props.token;
+const isLoggedIn = user_authorized(token);
 
-// You can replace these example team member details with actual data
-const teamMembers = [
-    {
-      name: 'Brandon Pae',
-      image: '/images/brandon.jpeg', // Place this image in your public/images folder
-      description: 'John has over 10 years of experience in water conservation.',
-    },
+return (
+    <div className="container">
+        <br />
 
-    {
-      name: 'Daniel Manjarrez',
-      image: '/images/janesmith.png', // Place this image in your public/images folder
-      description: 'Jane is a passionate scientist dedicated to improving water quality.',
-    },
+        <div className="row">
+            <div className="col-md-6">
+                <br />
+                <br />
+                <br />
 
-    {
-        name: 'Nicholas Djedjos',
-        image: '/images/nicholas.png', // Place this image in your public/images folder
-        description: 'John has over 10 years of experience in water conservation.',
-    },
+                <h2>Mission Statement</h2>
 
-    {
-        name: 'Trinity Suma',
-        image: '/images/trinity.png', // Place this image in your public/images folder
-        description: 'John has over 10 years of experience in water conservation.',
-    },
-    // Add more team members here
-  ];
+                <br />
+                
+                <p>Our mission is to improve water quality and promote sustainable water management in New York / New Jersey.
+                In our hometowns, there were cases where public water was polluted (by e. coli) and there was little to no information before it was too late.
 
-  function AboutPage(props) {
+                <br />
+                <br />
 
-    const logoPath = '/images/wewater.png'; // in public folder
-    const token = props.token;
-    const isLoggedIn = user_authorized(token);
-
-    return (
-        <div className="container">
-            <br />
-
-            <div className="row">
-                <div className="col-md-6">
-                    <br />
-                    <br />
-                    <br />
-
-                    <h2>Mission Statement</h2>
-
-                    <br />
-                    
-                    <p>Our mission is to improve water quality and promote sustainable water management in New York / New Jersey.
-                    In our hometowns, there were cases where public water was polluted (by e. coli) and there was little to no information before it was too late.
-
-                    <br />
-                    <br />
-
-                    Specifically, we had no way to report cases of sickness or contact local officials regarding the problem.
-                    And so we built WeWater to address these problems in areas near our school. 
-                    </p>
-                </div>
-
-                <div className="col-md-6">
-                    <div className="row">
-                        <div className="col-md-6">
-                            <h3>Brandon Pae</h3>
-                            <img src={process.env.PUBLIC_URL + '/images/brandon.jpeg'} className="img-fluid" alt="title2" style={{ width: '150px', height: '200px', objectFit: 'cover'}}/>
-                            <p>I am Brandon.</p>
-                        </div>
-
-                        <div className="col-md-6">
-                            <h3>Daniel Manjarrez</h3>
-                            <img src={process.env.PUBLIC_URL + '/images/daniel.png'} className="img-fluid" alt="title2" style={{ width: '150px', height: '200px', objectFit: 'cover'}}/>
-                            <p>I am Daniel.</p>
-                        </div>
-                    </div>
-
-                    <div className="row">
-                        <div className="col-md-6">
-                            <h3>Nicholas Djedjos</h3>
-                            <img src={process.env.PUBLIC_URL + '/images/nicholas.png'} className="img-fluid" alt="title2" style={{ width: '150px', height: '200px', objectFit: 'cover'}}/>
-                            <p>I am Nicholas.</p>
-                        </div>
-
-                        <div className="col-md-6">
-                            <h3>Trinity Suma</h3>
-                            <img src={process.env.PUBLIC_URL + '/images/trinity.png'} className="img-fluid" alt="title2" style={{ width: '150px', height: '200px', objectFit: 'cover'}}/>
-                            <p>I am Trinity.</p>
-                            </div>
-                        </div>
-                    </div>
+                Specifically, we had no way to report cases of sickness or contact local officials regarding the problem.
+                And so we built WeWater to address these problems in areas near our school. 
+                </p>
             </div>
 
-            <hr />
+            <div className="col-md-6">
+                <div className="row">
+                    <div className="col-md-6">
+                        <h3>Brandon Pae</h3>
+                        <img src={process.env.PUBLIC_URL + '/images/brandon.jpeg'} className="img-fluid" alt="title2" style={{ width: '150px', height: '200px', objectFit: 'cover'}}/>
+                        <p>I am Brandon.</p>
+                    </div>
 
-            <div className="row">
-                <div className="col-md-3">
-                </div>
-
-                <div className="col-md-6">
-                    <div>
-
-                        <br />
-
-                        <h2>Contact Us</h2>
-                        <form>
-                            <div className="mb-3">
-                                <label htmlFor="name" className="form-label">Name:</label>
-                                <input type="text" className="form-control" id="name" name="name" required />
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="email" className="form-label">Email:</label>
-                                <input type="email" className="form-control" id="email" name="email" required />
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="message" className="form-label">Message:</label>
-                                <textarea className="form-control" id="message" name="message" rows="3" required></textarea>
-                            </div>
-                            <button type="submit" className="btn btn-primary">Send</button>
-                        </form>
+                    <div className="col-md-6">
+                        <h3>Daniel Manjarrez</h3>
+                        <img src={process.env.PUBLIC_URL + '/images/daniel.png'} className="img-fluid" alt="title2" style={{ width: '150px', height: '200px', objectFit: 'cover'}}/>
+                        <p>I am Daniel.</p>
                     </div>
                 </div>
 
-                <div className="col-md-3">
+                <div className="row">
+                    <div className="col-md-6">
+                        <h3>Nicholas Djedjos</h3>
+                        <img src={process.env.PUBLIC_URL + '/images/nicholas.png'} className="img-fluid" alt="title2" style={{ width: '150px', height: '200px', objectFit: 'cover'}}/>
+                        <p>I am Nicholas.</p>
+                    </div>
+
+                    <div className="col-md-6">
+                        <h3>Trinity Suma</h3>
+                        <img src={process.env.PUBLIC_URL + '/images/trinity.png'} className="img-fluid" alt="title2" style={{ width: '150px', height: '200px', objectFit: 'cover'}}/>
+                        <p>I am Trinity.</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <hr />
+
+        <div className="row">
+            <div className="col-md-3">
+            </div>
+
+            <div className="col-md-6">
+                <div>
+
+                    <br />
+
+                    <h2>Contact Us</h2>
+                    <form>
+                        <div className="mb-3">
+                            <label htmlFor="name" className="form-label">Name:</label>
+                            <input type="text" className="form-control" id="name" name="name" required />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="email" className="form-label">Email:</label>
+                            <input type="email" className="form-control" id="email" name="email" required />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="message" className="form-label">Message:</label>
+                            <textarea className="form-control" id="message" name="message" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" className="btn btn-primary">Send</button>
+                    </form>
                 </div>
             </div>
 
-            <br />
-            <br />
+            <div className="col-md-3">
+            </div>
+        </div>
 
-      </div>
-    );
-  }
+        <br />
+        <br />
 
-  export default AboutPage;
+    </div>
+);
+}
+
+export default AboutPage;

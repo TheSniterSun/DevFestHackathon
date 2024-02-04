@@ -11,6 +11,8 @@ import { user_authorized } from './utils';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
+import NavDropdown from 'react-bootstrap/NavDropdown'; // Import NavDropdown
+
 function NavBar(props) {
 
     // const [user, setUser] = useState(null);
@@ -42,6 +44,8 @@ function NavBar(props) {
     }
 
     // check if the user has a token
+    // this is the only feature that requires a login system
+
     function handleChat() {
         if (isLoggedIn) {
             navigate('/chat')
@@ -53,12 +57,7 @@ function NavBar(props) {
 
     // check if the user has a token
     function handleAbout() {
-      if (isLoggedIn) {
-          navigate('/about')
-      }
-      else {
-          navigate('/login')
-      }
+      navigate('/login')
     }
 
     return (
@@ -73,13 +72,16 @@ function NavBar(props) {
             {/* Change this so it's NOT a dropdown later */}
               <Nav className="ml-auto">
                 {/* First need to check that the user is logged in*/}
-                <Nav.Link onClick={handleAbout}>About</Nav.Link>
+                <Nav.Link onClick={handleAbout}>About Us</Nav.Link>
               </Nav>
 
-              <Nav className="ml-auto">
-                {/* First need to check that the user is logged in*/}
-                <Nav.Link onClick={handleChat}>Chat</Nav.Link>
-              </Nav>
+              {/* Here's the dropdown menu */}
+              <NavDropdown title="Features" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="/report">Report</NavDropdown.Item>
+                  <NavDropdown.Item href="/map">Map</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item onClick={handleChat}>Contact</NavDropdown.Item>
+              </NavDropdown>
 
             </Navbar.Collapse>
 
