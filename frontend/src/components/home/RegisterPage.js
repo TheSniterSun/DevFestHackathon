@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import styles from './home.module.css';
 
 function RegisterPage(props) {
-    const logoPath = '/images/secra_logo.png';
     // const [token, setToken] = useState(props.token);
     const navigate = useNavigate();
     const [status, setStatus] = useState('');
@@ -109,10 +108,8 @@ function RegisterPage(props) {
 
     return (
         <>
-            <div className={styles.loginPageTop}> 
-                <h2>Secra</h2>
-                <img className={styles.topLogo} src={process.env.PUBLIC_URL + logoPath} alt="logo" />
-            </div>
+            <br />
+            <br />
 
             <div className={styles.registerContainer}>
                 <h3 id={styles.loginHeader}>Register</h3>
