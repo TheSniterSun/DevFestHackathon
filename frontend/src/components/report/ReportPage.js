@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styles from './report.module.css';
 
+import axios from 'axios'; // Import Axios
+
 function ReportPage() {
   const [inputValue, setInputValue] = useState('');
   const [inputValue2, setInputValue2] = useState('');
@@ -83,132 +85,113 @@ function ReportPage() {
     setComment(e.target.value);
   };
 
-  const handleSubmit = () => {
+  function handleSubmit(event) {
     console.log('Form submitted!');
-  };
+
+    event.preventDefault() // prevent default form submission behavior (because we want to connect to BE endpoint)
+    
+    axios({
+      method: "POST",
+      url:"/submitData", // endpoint in backend to login user and return access token
+      // remember, users module is just base url (e.g. localhost:5000/login but other modules are not
+      // e.g. localhost:5000/gpt/test)
+      // for some reason, proxy not working
+      baseURL: 'http://127.0.0.1:5000', // for some reason, throws error with localhost
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      
+      data: {
+        dataa: {
+            street: inputValue,
+            city: inputValue2,
+            state: inputValue3,
+            zip: inputValue4,
+
+            chlorine: inputValue5,
+            turbidity: inputValue6,
+            fluorine: inputValue7,
+            coliform: inputValue8,
+            ecoli: inputValue9
+        }
+      }
+
+    })
+    .then((response) => {
+
+        const data = response.data; // need to access the actual JSON data returned
+
+        // console.log(response);
+        console.log(data["success"])
+
+
+    }).catch((error) => {
+      if (error.response) {
+        console.log(error.response)
+        console.log(error.response.status)
+        console.log(error.response.headers)
+        }
+    })
+  }
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.header}>
-        Submit a Concern
-        <button onClick={handleSubmit} className={styles.btn} style={{ marginLeft: '10px' }}>
-          Submit
-        </button>
-      </h1>
+      <h1 className={styles.header}>Submit a Concern<button onClick={handleSubmit} className={styles.btn} style={{ marginLeft: '10px' }}>Submit</button></h1>
       <div className={styles.task}>
-        Use current location:
-        <input
-          type='checkbox'
-          checked={useCurrentLocation}
-          onChange={handleCheckboxChange}
-          className={styles['form-control-check']}
-        />
+        Use current location: 
+        <input type='checkbox' checked={useCurrentLocation} onChange={handleCheckboxChange} className={styles.formControlCheck} />
       </div>
 
       {useCurrentLocation ? null : (
         <div className={styles.task}>
-          <span className={styles.boldText}>Manually Fill In Your Location</span>
-          <br />
-          Street: <span className={styles.inputWrapper}><input type="text" value={inputValue} onChange={handleInputChange} className={styles.input} /></span>
-          <br />
-          City: <span className={styles.inputWrapper}><input type="text" value={inputValue2} onChange={handleInputChange2} className={styles.input} /></span>
-          <br />
-          State: <span className={styles.inputWrapper}><input type="text" value={inputValue3} onChange={handleInputChange3} className={styles.input} /></span>
-          <br />
-          Zip: <span className={styles.inputWrapper}><input type="text" value={inputValue4} onChange={handleInputChange4} className={styles.input} /></span>
-          <br />
+          <span style={{ fontWeight: 'bold', color: 'grey' }}>Manually Fill In Your Location</span><br />
+          Street: <span style={{position: 'relative', right:'-16px'}}><input type="text" value={inputValue} onChange={handleInputChange} className={`${styles.formControl} ${styles.input}`} /></span><br />
+          City: <span style={{position: 'relative', right:'-31px'}}><input type="text" value={inputValue2} onChange={handleInputChange2} className={`${styles.formControl} ${styles.input}`} /></span><br />
+          State: <span style={{position: 'relative', right:'-21px'}}><input type="text" value={inputValue3} onChange={handleInputChange3} className={`${styles.formControl} ${styles.input}`} /></span><br />
+          Zip: <span style={{position: 'relative', right:'-39px'}}><input type="text" value={inputValue4} onChange={handleInputChange4} className={`${styles.formControl} ${styles.input}`} /></span><br />
         </div>
       )}
       <div className={styles.task}>
-        <span className={styles.boldText}>Report Details Of Your Location</span>
-        <br />
-        <span className={styles.checkboxRow}>
-          <input type='checkbox' checked={useCurrentLocation2} onChange={handleCheckboxChange2} className={styles['form-control-check']} />
-          <span className={styles.checkboxLabel}>Chlorine</span>
-        </span>
-        {!useCurrentLocation2 ? null : (
-          <div className={styles.task}>
-            <span className={styles.inputWrapper}>
-              <input type="text" value={inputValue5} onChange={handleInputChange5} className={styles['form-control-2']} />
-            </span>
-            mg / L
-            {inputValue5 >= 4 && (
-              <span className={styles.dangerText}>Dangerous Levels!</span>
-            )}
-          </div>
-        )}
-        <span className={styles.checkboxRow}>
-          <input type='checkbox' checked={useCurrentLocation3} onChange={handleCheckboxChange3} className={styles['form-control-check']} />
-          <span className={styles.checkboxLabel}>Turbidity</span>
-        </span>
-        {!useCurrentLocation3 ? null : (
-          <div className={styles.task}>
-            <span className={styles.inputWrapper}>
-              <input type="text" value={inputValue6} onChange={handleInputChange6} className={styles['form-control-2']} />
-            </span>
-            NTU
-            {inputValue6 >= 5 && (
-              <span className={styles.dangerText}>Dangerous Levels!</span>
-            )}
-          </div>
-        )}
-        <span className={styles.checkboxRow}>
-          <input type='checkbox' checked={useCurrentLocation4} onChange={handleCheckboxChange4} className={styles['form-control-check']} />
-          <span className={styles.checkboxLabel}>Fluorine</span>
-        </span>
-        {!useCurrentLocation4 ? null : (
-          <div className={styles.task}>
-            <span className={styles.inputWrapper}>
-              <input type="text" value={inputValue7} onChange={handleInputChange7} className={styles['form-control-2']} />
-            </span>
-            mg / L
-            {inputValue7 >= 4 && (
-              <span className={styles.dangerText}>Dangerous Levels!</span>
-            )}
-          </div>
-        )}
-        <span className={styles.checkboxRow}>
-          <input type='checkbox' checked={useCurrentLocation5} onChange={handleCheckboxChange5} className={styles['form-control-check']} />
-          <span className={styles.checkboxLabel}>Coliform</span>
-        </span>
-        {!useCurrentLocation5 ? null : (
-          <div className={styles.task}>
-            <span className={styles.inputWrapper}>
-              <input type="text" value={inputValue8} onChange={handleInputChange8} className={styles['form-control-2']} />
-            </span>
-            MPN / 100 ml
-            {inputValue8 >= 5 && (
-              <span className={styles.dangerText}>Dangerous Levels!</span>
-            )}
-          </div>
-        )}
-        <span className={styles.checkboxRow}>
-          <input type='checkbox' checked={useCurrentLocation6} onChange={handleCheckboxChange6} className={styles['form-control-check']} />
-          <span className={styles.checkboxLabel}>E. Coli</span>
-        </span>
-        {!useCurrentLocation6 ? null : (
-          <div className={styles.task}>
-            <span className={styles.inputWrapper}>
-              <input type="text" value={inputValue9} onChange={handleInputChange9} className={styles['form-control-2']} />
-            </span>
-            MPN / 100 ml
-            {inputValue9 >= 5 && (
-              <span className={styles.dangerText}>Dangerous Levels!</span>
-            )}
-          </div>
-        )}
+      <span style={{ fontWeight: 'bold', color: 'grey', marginBottom:'20px'}}>Report Details Of Your Location</span><br />
+      <span style={{margin: '2px'}}><span style={{position: 'relative', right:'-16px', top:'5px'}}><input type='checkbox' checked={useCurrentLocation2} onChange={handleCheckboxChange2} className={styles.formControlCheck} /></span> <span style={{position: 'relative', right:'-30px', padding:'5px', top:'5px'}}>Chlorine</span><br /></span>
+      {!useCurrentLocation2 ? null : (
+        <div className='task'>
+            <span style={{position: 'relative', right:'-32px'}}><input type="text" value={inputValue5} onChange={handleInputChange5} className={`${styles.formControl2} ${styles.input2}`} /> mg / L</span><br />
+            {inputValue5 >= 4 && <span style={{position: 'relative', right:'-32px', color:'red'}}>Dangerous Levels!</span>}
+        </div>
+      )}
+      <span style={{margin: '2px'}}><span style={{position: 'relative', right:'-16px', top:'5px'}}><input type='checkbox' checked={useCurrentLocation3} onChange={handleCheckboxChange3} className={styles.formControlCheck}/></span> <span style={{position: 'relative', right:'-30px', padding:'5px', top:'5px'}}>Turbidity</span><br /></span>
+      {!useCurrentLocation3 ? null : (
+        <div className={styles.task}>
+            <span style={{position: 'relative', right:'-32px'}}><input type="text" value={inputValue6} onChange={handleInputChange6} className={`${styles.formControl2} ${styles.input2}`} /> NTU</span><br />
+            {inputValue6 >= 5 && <span style={{position: 'relative', right:'-32px', color:'red'}}>Dangerous Levels!</span>}
+        </div>
+      )}
+      <span style={{margin: '2px'}}><span style={{position: 'relative', right:'-16px', top:'5px'}}><input type='checkbox' checked={useCurrentLocation4} onChange={handleCheckboxChange4} className={styles.formControlCheck}/></span> <span style={{position: 'relative', right:'-30px', padding:'5px', top:'5px'}}>Fluorine</span><br /></span>
+      {!useCurrentLocation4 ? null : (
+        <div className={styles.task}>
+            <span style={{position: 'relative', right:'-32px'}}><input type="text" value={inputValue7} onChange={handleInputChange7} className={`${styles.formControl2} ${styles.input2}`} /> mg / L</span><br />
+            {inputValue7 >= 4 && <span style={{position: 'relative', right:'-32px', color:'red'}}>Dangerous Levels!</span>}
+        </div>
+      )}
+      <span style={{margin: '2px'}}><span style={{position: 'relative', right:'-16px', top:'5px'}}><input type='checkbox' checked={useCurrentLocation5} onChange={handleCheckboxChange5} className={styles.formControlCheck}/></span> <span style={{position: 'relative', right:'-30px', padding:'5px', top:'5px'}}>Coliform</span><br /></span>
+      {!useCurrentLocation5 ? null : (
+        <div className={styles.task}>
+            <span style={{position: 'relative', right:'-32px'}}><input type="text" value={inputValue8} onChange={handleInputChange8} className={`${styles.formControl2} ${styles.input2}`} /> MPN / 100 ml</span><br />
+            {inputValue8 >= 5 && <span style={{position: 'relative', right:'-32px', color:'red'}}>Dangerous Levels!</span>}
+        </div>
+      )}
+      <span style={{margin: '2px'}}><span style={{position: 'relative', right:'-16px', top:'5px'}}><input type='checkbox' checked={useCurrentLocation6} onChange={handleCheckboxChange6} className={styles.formControlCheck}/></span> <span style={{position: 'relative', right:'-30px', padding:'5px', top:'5px'}}>E. Coli</span><br /></span>
+      {!useCurrentLocation6 ? null : (
+        <div className={styles.task}>
+            <span style={{position: 'relative', right:'-32px'}}><input type="text" value={inputValue9} onChange={handleInputChange9} className={`${styles.formControl2} ${styles.input2}`} /> MPN / 100 ml</span><br />
+            {inputValue9 >= 5 && <span style={{position: 'relative', right:'-32px', color:'red'}}>Dangerous Levels!</span>}
+        </div>
+      )}
       </div>
       <div className={styles.task}>
-        <span className={styles.boldText}>Comments</span>
-        <br />
-        <textarea
-          value={comment}
-          onChange={handleCommentChange}
-          rows="4"
-          cols="50"
-          className={styles['form-control-2']}
-          style={{ resize: 'none', marginTop: '10px' }}
-        />
+      <span style={{ fontWeight: 'bold', color: 'grey', marginBottom:'20px'}}>Comments</span><br />
+      <textarea value={comment} onChange={handleCommentChange} rows="4" cols="50" className={`${styles.formControl2} ${styles.input2}`} style={{ resize: 'none', marginTop:'10px'}}/>
       </div>
     </div>
   );

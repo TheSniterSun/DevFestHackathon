@@ -1,33 +1,15 @@
-import React from 'react';
-import { useState } from 'react';
+function MapPage() {
+    return (<>
+        <br />
 
-import { useEffect } from 'react';
-import { useContext } from 'react';
+        <h1>Interactive Map</h1>
 
-import NavBar from '../NavBar';
-
-import axios from 'axios'; // Import Axios
-import { user_authorized } from '../utils'
-
-import { Link } from 'react-router-dom';
-
-import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is imported
-import styles from './map.module.css';
-
-const baseURL = "http://localhost:8000"; // for local dev this is the backend server
-
-function MapPage(props) {
-
-    const logoPath = '/images/wewater.png'; // in public folder
-    const token = props.token;
-    const isLoggedIn = user_authorized(token);
-
-    return (
-        <div className="container">
-            MAP PAGE HERE
+        <div className="map-container">
+            <iframe id="map" src="http://127.0.0.1:5500/mapboxMap.html" style={{position: 'relative', top: '25px', width: "800px", height: "500px" }}></iframe>
         </div>
-    );
 
+        </>
+    );
 }
 
 export default MapPage;

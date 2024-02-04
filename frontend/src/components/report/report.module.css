@@ -1,19 +1,15 @@
-/* styles.module.css */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 
-/* Global Styles */
-* {
+.global {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Body Styles */
-body {
+.body {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Container Styles */
 .container {
   max-width: 500px;
   margin: 30px auto;
@@ -24,7 +20,6 @@ body {
   border-radius: 5px;
 }
 
-/* Header Styles */
 .header {
   display: flex;
   justify-content: space-between;
@@ -33,7 +28,6 @@ body {
   text-align: center;
 }
 
-/* Button Styles */
 .btn {
   display: inline-block;
   background: rgb(17, 208, 17);
@@ -56,12 +50,11 @@ body {
   transform: scale(0.98);
 }
 
-.btn-block {
+.btnBlock {
   display: block;
   width: 100%;
 }
 
-/* Task Styles */
 .task {
   background: #f4f4f4;
   margin: 5px;
@@ -79,20 +72,19 @@ body {
   justify-content: space-between;
 }
 
-/* Form Styles */
-.add-form {
+.addForm {
   margin-bottom: 40px;
 }
 
-.form-control {
+.formControl {
   margin: 20px 0;
 }
 
-.form-control label {
+.formControl label {
   display: block;
 }
 
-.form-control input {
+.formControl input {
   width: 100%;
   height: 40px;
   margin: 5px;
@@ -100,7 +92,7 @@ body {
   font-size: 17px;
 }
 
-.form-control-2 input-2 {
+.formControl2 input-2 {
   margin: 10px 0;
   width: 100%;
   height: 40px;
@@ -109,8 +101,7 @@ body {
   font-size: 17px;
 }
 
-/* Form Control Check Styles */
-.form-control-check {
+.formControlCheck {
   position: relative;
   right: -10px;
   top: 2px;
@@ -118,16 +109,15 @@ body {
   justify-content: space-between;
 }
 
-.form-control-check label {
+.formControlCheck label {
   flex: 1;
 }
 
-.form-control-check input {
+.formControlCheck input {
   flex: 2;
   height: 20px;
 }
 
-/* Footer Styles */
 footer {
   margin-top: 30px;
   text-align: center;

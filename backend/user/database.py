@@ -415,7 +415,7 @@ def insert_gcal_token(user_id, token):
         except Exception as e:
             print("ERROR: " + str(e))
 
-def insert_water_data(DATE, CHLORINE, TURBIDITY, FLUORIDE, COLIFORM, ECOLI, LAT, LONG, LOC):
+def insert_water_data(DATE, CHLORINE, TURBIDITY, FLUORINE, COLIFORM, ECOLI, LAT, LON, LOC):
     with SSHTunnelForwarder( 
         (AWS_IP, 22), # 22 by default
         ssh_username='ec2-user', 
@@ -437,18 +437,18 @@ def insert_water_data(DATE, CHLORINE, TURBIDITY, FLUORIDE, COLIFORM, ECOLI, LAT,
 
             with engine.connect() as connection:
                 query = """
-                INSERT INTO WATER_DATA (DATE, CHLORINE, TURBIDITY, FLUORIDE, COLIFORM, ECOLI, LAT, LONG, LOC)
-                VALUES (:DATE,:CHLORINE,:TURBIDITY,:FLUORIDE,:COLIFORM,:ECOLI,:LAT,:LONG,:LOC)
+                INSERT INTO WATER_DATA (DATE, CHLORINE, TURBIDITY, FLUORINE, COLIFORM, ECOLI, LAT, LON, LOC)
+                VALUES (:DATE,:CHLORINE,:TURBIDITY,:FLUORINE,:COLIFORM,:ECOLI,:LAT,:LON,:LOC)
                 """
 
                 params = {'DATE': DATE,
                           'CHLORINE': CHLORINE,
                           'TURBIDITY': TURBIDITY,
-                          'FLUORIDE': FLUORIDE,
+                          'FLUORINE': FLUORINE,
                           'COLIFORM': COLIFORM,
                           'ECOLI': ECOLI,
                           'LAT': LAT,
-                          'LONG': LONG,
+                          'LON': LON,
                           'LOC': LOC}
 
                 connection.execute(text(query), params)
